@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 10 10 15; /* #0A0A0F - Deep space black */
+    --foreground: 255 255 255;
+    --card: 10 10 15;
+    --card-foreground: 255 255 255;
+    --popover: 10 10 15;
+    --popover-foreground: 255 255 255;
+    --primary: 0 255 136; /* #00FF88 - Neon green */
+    --primary-foreground: 10 10 15;
+    --secondary: 26 26 46;
+    --secondary-foreground: 255 255 255;
+    --muted: 26 26 46;
+    --muted-foreground: 156 163 175;
+    --accent: 255 0 128; /* #FF0080 - Neon pink */
+    --accent-foreground: 255 255 255;
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    --border: 55 65 81;
+    --input: 55 65 81;
+    --ring: 0 255 136;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans;
+
+    font-family: Inter, sans-serif;
+    overflow: hidden;
+    background: radial-gradient(ellipse at center, #0F0F23 0%, #0A0A0F 100%);
+  }
+  
+  html, body, #root {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer components {
+  .neon-glow {
+    text-shadow: 0 0 10px currentcolor, 0 0 20px currentcolor, 0 0 30px currentcolor;
+  }
+  
+  .snake-segment {
+    box-shadow: 
+      0 0 10px currentcolor,
+      0 0 20px currentcolor,
+      inset 0 0 10px rgb(255 255 255 / 10%);
+    border-radius: 2px;
+  }
+  
+  .food-glow {
+    box-shadow: 
+      0 0 15px currentcolor,
+      0 0 30px currentcolor,
+      0 0 45px currentcolor;
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes pulse-glow {
+    from {
+      box-shadow: 
+        0 0 15px currentcolor,
+        0 0 30px currentcolor,
+        0 0 45px currentcolor;
+    }
+
+    to {
+      box-shadow: 
+        0 0 20px currentcolor,
+        0 0 40px currentcolor,
+        0 0 60px currentcolor;
+    }
+  }
+  
+  .evolution-text {
+    background: linear-gradient(45deg, #0F8, #FF0080, #00BFFF);
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 3s ease infinite;
+  }
+  
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .game-canvas {
+    background: 
+      radial-gradient(circle at 25% 25%, rgb(0 255 136 / 10%) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgb(255 0 128 / 10%) 0%, transparent 50%),
+      linear-gradient(135deg, rgb(0 191 255 / 5%) 0%, transparent 100%);
+  }
+  
+  .achievement-glow {
+    animation: achievement-pulse 0.6s ease-in-out;
+  }
+  
+  @keyframes achievement-pulse {
+    0% { transform: scale(0.8); opacity: 0%; }
+    50% { transform: scale(1.1); opacity: 100%; }
+    100% { transform: scale(1); opacity: 100%; }
+  }
+}
